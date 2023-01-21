@@ -95,8 +95,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setConstraints()
-       
+        setConstraints()   
     }
     
     private func setupViews() {
