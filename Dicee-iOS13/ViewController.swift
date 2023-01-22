@@ -105,6 +105,7 @@ class ViewController: UIViewController {
     
     private func setupView() {
         view.layer.contents = UIImage(imageLiteralResourceName: "GreenBackground").cgImage
+        // порядок элементов важен
         view.setupView(stackView)
         view.setupView(diceLogoImageView)
         view.setupView(diceStackView)
