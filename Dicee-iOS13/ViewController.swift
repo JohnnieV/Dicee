@@ -139,12 +139,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension UIView {
-    func setupView(_ view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-    }
-}
+
 
 
 
