@@ -89,19 +89,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupStackViews()
+        addArrangedSubviews()
         setConstraints()   
     }
     
-    private func setupStackViews() {
-        //вертикальный стэк
-        stackView.addArrangedSubview(topView)
-        stackView.addArrangedSubview(middleView)
-        stackView.addArrangedSubview(bottomView)
-        //горигонтальный стэк
-        diceStackView.addArrangedSubview(dice1)
-        diceStackView.addArrangedSubview(dice2)
+    private func addArrangedSubviews() {
+        stackView.addArrangedSubviews([topView, middleView, bottomView])
+        diceStackView.addArrangedSubviews([dice1, dice2])
     }
+    
+    
     
     private func setupView() {
         view.layer.contents = UIImage(imageLiteralResourceName: "GreenBackground").cgImage
