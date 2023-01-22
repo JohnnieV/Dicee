@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  Dicee-iOS13
-//
-//  Created by Angela Yu on 11/06/2019.
-//  Copyright © 2019 London App Brewery. All rights reserved.
-//
+
 
 import UIKit
 
@@ -15,7 +9,7 @@ class ViewController: UIViewController {
     //MARK: - MAIN STACK
     private let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        //stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 1
@@ -26,14 +20,14 @@ class ViewController: UIViewController {
     private let topView: UIView = {
         let view = UIView()
         view.contentMode = .scaleToFill
-        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let diceLogoImageView: UIImageView = {
         let logoView = UIImageView()
         logoView.image = UIImage(imageLiteralResourceName: "DiceeLogo")
-        logoView.translatesAutoresizingMaskIntoConstraints = false
+        //logoView.translatesAutoresizingMaskIntoConstraints = false
         return logoView
     }()
     
@@ -41,13 +35,13 @@ class ViewController: UIViewController {
     private let middleView: UIView = {
         let view = UIView()
         view.contentMode = .scaleToFill
-        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let diceStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        //stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 50
@@ -57,14 +51,14 @@ class ViewController: UIViewController {
     private var dice1: UIImageView = {
         let diceImage = UIImageView()
         diceImage.image = UIImage(imageLiteralResourceName: "DiceOne")
-        diceImage.translatesAutoresizingMaskIntoConstraints = false
+        //diceImage.translatesAutoresizingMaskIntoConstraints = false
         return diceImage
     }()
     
     private var dice2: UIImageView = {
         let diceImage = UIImageView()
         diceImage.image = UIImage(imageLiteralResourceName: "DiceTwo")
-        diceImage.translatesAutoresizingMaskIntoConstraints = false
+        //diceImage.translatesAutoresizingMaskIntoConstraints = false
         return diceImage
     }()
     
@@ -83,7 +77,7 @@ class ViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.6062273979, green: 0.108488299, blue: 0.1197911575, alpha: 1)
         button.tintColor = .white
         button.addTarget(self, action: #selector(randomizeDices), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        //button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -94,23 +88,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        setupView()
+        setupStackViews()
         setConstraints()   
     }
     
-    private func setupViews() {
-        view.layer.contents = UIImage(imageLiteralResourceName: "GreenBackground").cgImage
+    private func setupStackViews() {
         //вертикальный стэк
         stackView.addArrangedSubview(topView)
         stackView.addArrangedSubview(middleView)
         stackView.addArrangedSubview(bottomView)
-        //горизонтальный стэк
+        //горигонтальный стэк
         diceStackView.addArrangedSubview(dice1)
         diceStackView.addArrangedSubview(dice2)
-        topView.addSubview(diceLogoImageView)
-        middleView.addSubview(diceStackView)
-        bottomView.addSubview(rollButton)
-        view.addSubview(stackView)
+    }
+    
+    private func setupView() {
+        view.layer.contents = UIImage(imageLiteralResourceName: "GreenBackground").cgImage
+        view.setupView(stackView)
+        view.setupView(diceLogoImageView)
+        view.setupView(diceStackView)
+        view.setupView(rollButton)
     }
     
     private func setConstraints() {
@@ -138,6 +136,13 @@ class ViewController: UIViewController {
             rollButton.heightAnchor.constraint(equalToConstant: 50),
             rollButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 100)
         ])
+    }
+}
+
+extension UIView {
+    func setupView(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
     }
 }
 
